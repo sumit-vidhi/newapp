@@ -1,0 +1,129 @@
+<% include layouts/header %>
+<% include layouts/leftbar %>
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script> -->
+
+
+<section id="main-content">
+	<section class="wrapper">         	
+          	<div class="row mt">
+				
+          		<div class="col-lg-12">
+				      <% if (message.length > 0) { %>
+                 <div class="row" style="margin:10px;"><div class="col-sm-12 alert alert-danger"><%= message %></div></div>
+                <% } %>
+                <%  
+                if (errors && errors.length>0) { 
+                %>
+                <div class="row" style="margin:10px;">
+                <div class="col-sm-6 col-md-offset-3 alert alert-danger"> 
+                <%
+                  for(var i = 0; i < errors.length; i++) {
+                    %>
+                    <%= errors[i].msg %><br />
+                    <%
+                  }
+                %>
+                </div></div>
+                <%
+                }
+              	%>
+                  <div class="form-panel">	
+ <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                             Edit Meal
+                          </header>
+						  <form role="form" class="form-horizontal" action="<%= SITE_URL %>admin/update_meal" method="post" name="frm" id="frm" enctype='multipart/form-data'>
+                          <div class="panel-body">
+                              
+                                  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Meal name: <span class="error">*</span></label>
+                              <div class="col-sm-5">
+                                  <input type="text" class="form-control required" name="mealname" value="<%= data.meal_name%>" placeholder="Meal Name">
+                              </div>
+							  
+                          </div>
+
+                            <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Meal Price: <span class="error">*</span></label>
+                              <div class="col-sm-5">
+                                  <input type="text" class="form-control required" name="mealprice" value="<%= data.price%>" placeholder="Meal Price">
+                              </div>
+                
+                          </div>
+                            <div class="form-group"> 
+                              <label class="col-sm-2 col-sm-2 control-label">Meal Description: <span class="error">*</span></label>
+                              <div class="col-sm-5">
+                                  <textarea name="mealdescription" rows="4" cols="56"  placeholder="Meal Description"><%= data.description%></textarea>
+                              </div>
+                
+                          </div>
+
+                          
+                          <div class="form-group"> 
+                            <label class="col-sm-2 col-sm-2 control-label">Meal Ingredients: <span class="error">*</span></label>
+                            <div class="col-sm-5">
+                                <textarea name="mealingredients" rows="8" cols="56"  value="" placeholder="Meal Ingredients"><%= data.ingredients%></textarea>
+                            </div>
+              
+                        </div>
+
+                        <div class="form-group"> 
+                                <label class="col-sm-2 col-sm-2 control-label">Meal Nutrition: <span class="error">*</span></label>
+                                <div class="col-sm-5">
+                                    <textarea name="mealnutrition" rows="8" cols="56"  value="" placeholder="Meal Nutrition"><%= data.nutrition%></textarea>
+                                </div>
+                  
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Meal Image: <span class="error">*</span></label>
+                              <div class="col-sm-5">
+                                  <input type="file" class="form-control" name="userPhoto" value="" placeholder="from" multiple>
+                              </div>
+                 <input type="hidden" class="form-control" name="id" value="<%= data.id%>" placeholder="Meal Price">
+                          </div>
+                       <div class="form-group">
+                                      <div class="col-lg-offset-2 col-lg-10">
+            							
+            								  <input type="submit" class="btn btn-primary" name="submit" value="Update" />&nbsp;
+            								  <input type="button" class="btn btn-theme02" value="Cancel" onclick="history.go(-1)"/>
+                            </div>
+                          </div>
+                           </div>
+                              </form>
+
+                          </div>
+                      </section>
+                  </div>
+				  </div>
+					  
+                  </div>
+          		</div><!-- col-lg-12-->      	
+          	</div><!-- /row -->          	
+		</section>
+<script type="text/javascript">
+
+$(document).ready(function(){	
+$("#frm").validate({
+    rules: {
+    mealname: {
+      required: true,
+  
+    },
+	 mealdescription: {
+     required: true
+    },
+     mealprice: {
+     required: true,
+     number: true
+    }
+  }
+});
+//$('textarea').froalaEditor()
+});
+</script>
+<script type="text/javascript" src="/js/jquery.validate.js"></script>
+<% include layouts/footer %>

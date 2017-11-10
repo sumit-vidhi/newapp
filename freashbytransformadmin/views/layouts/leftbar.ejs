@@ -1,0 +1,87 @@
+ <aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            
+              
+            <li class="mt">
+                <a class="dashboard active" href="<%= SITE_URL %>admin/dashboard">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+           <li>
+                <a class="site_zipcode" href="<%= SITE_URL %>admin/zipcode">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Manage Zipcode</span>
+                </a>
+            </li>
+			 <li>
+                <a class="site_meals" href="<%= SITE_URL %>admin/meals">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Manage Meals</span>
+                </a>
+            </li>
+            <li>
+                <a class="site_blogs" href="<%= SITE_URL %>admin/blogs">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Manage Blogs</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="site_page" href="<%= SITE_URL %>admin/pages">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Manage Pages</span>
+                </a>
+            </li>
+             <li>
+                <a class="site_users" href="<%= SITE_URL %>admin/users">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Manage Users</span>
+                </a>
+            </li>
+            <li>
+                <a class="constructs" href="<%= SITE_URL %>admin/logout">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<script type="text/javascript">
+
+$('#nav-accordion li a.active').removeClass('active');
+var pageName = window.location.pathname.substring(1);
+//alert(id);
+if(pageName=='/admin/dashboard') { 
+  $('#nav-accordion li a.dashboard').addClass('active');
+}
+else if(pageName=='admin/zipcode' || pageName=='admin/addzipcode'  ) {
+  $('#nav-accordion li a.site_zipcode').addClass('active');
+}
+else if(pageName=='admin/users') {
+  $('#nav-accordion li a.site_users').addClass('active');
+}
+else if(pageName=='admin/meals' || pageName=='admin/addmeal' || pageName.search('editmeal')>=0) {
+  $('#nav-accordion li a.site_meals').addClass('active');
+}
+else if(pageName=='admin/pages' || pageName=='admin/addpage' || pageName.search('editpage')>=0) {
+  $('#nav-accordion li a.site_page').addClass('active');
+}
+else if(pageName=='admin/blogs' || pageName=='admin/addblog' || pageName.search('editblog')>=0) {
+  $('#nav-accordion li a.site_blogs').addClass('active');
+}
+
+else {
+  $('#nav-accordion li a.dashboard').addClass('active');
+}
+//alert(pageName);
+</script>
+<style>
+    ul.sidebar-menu li a.active{
+        background:#1a2732;
+    }
+</style>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Admin Login</title>
+
+    <!-- Bootstrap CSS -->    
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+  <body class="">
+
+    <div class="container">
+	  			<% if (message.length > 0) { %>
+					<div class="row mt"><div class="col-sm-6 col-md-offset-3 alert alert-danger"><%= message %></div></div>
+				<% } %>
+				<% if (errors && errors.length>0) { 
+				%>
+				<div class="row mt">
+				<div class="col-sm-6 col-md-offset-3 alert alert-danger">	
+				<%
+					for(var i = 0; i < errors.length; i++) {
+						%>
+						<%= errors[i] %><br />
+						<%
+					}
+					}
+				%>
+				</div></div>
+					
+		        <form class="login-form" id="frm" method="post" action="">
+		      
+				
+				
+				 <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon_profile"></i></span>
+             <input type="text" name="username" class="form-control required email" placeholder="Email" value="" maxlength="100" autofocus>
+		            <br>
+            </div>
+           
+            <label class="checkbox">
+              
+                <span class="pull-right"> <a href="/"> Login </a></span>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" onclick="javascript:return submitlogin();" type="submit">Send Password</button>
+         
+        </div>
+	</form>	  	
+	  	
+	  	</div>
+	  </div>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+	 $(document).ready(function(){
+		$("#frm").validate();	
+	  });
+	  function submitlogin() {
+		jQuery("#frm").submit();	
+	 }
+	</script>
+  <style>
+  label.error{
+      color:red;
+  }
+  </style>
+
+
+  </body>
+</html>

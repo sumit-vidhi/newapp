@@ -1,0 +1,76 @@
+<% include layouts/header %>
+<% include layouts/leftbar %>
+<section id="main-content">
+	<section class="wrapper">         	
+          	<div class="row mt">
+				
+          		<div class="col-lg-12">
+				      <% if (message.length > 0) { %>
+                 <div class="row" style="margin:10px;"><div class="col-sm-12 alert alert-danger"><%= message %></div></div>
+                <% } %>
+                <%  
+                if (errors && errors.length>0) { 
+                %>
+                <div class="row" style="margin:10px;">
+                <div class="col-sm-6 col-md-offset-3 alert alert-danger"> 
+                <%
+                  for(var i = 0; i < errors.length; i++) {
+                    %>
+                    <%= errors[i].msg %><br />
+                    <%
+                  }
+                %>
+                </div></div>
+                <%
+                }
+              	%>
+                  <div class="form-panel">	
+ <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                             Edit Zipcode
+                          </header>
+						  <form role="form" class="form-horizontal" action="<%= SITE_URL %>admin/updatezipcode/" method="post" name="frm" id="frm">
+                          <div class="panel-body">
+                              
+                                  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Zipcode: <span class="error">*</span></label>
+                              <div class="col-sm-5">
+                                  <input type="text" class="form-control required" name="zipcodefrom" value="<%= data.zipnumber %>" placeholder="Zipcode">
+                              </div>
+							 <input type="hidden" class="form-control" name="id" value="<%= data.id %>" >
+                          </div>
+                       <div class="form-group">
+                                      <div class="col-lg-offset-2 col-lg-10">
+            								  <input type="hidden" name="userid" value="" />
+            								  <input type="submit" class="btn btn-primary" name="submit" value="Submit" />&nbsp;
+            								  <input type="button" class="btn btn-theme02" value="Cancel" onclick="history.go(-1)"/>
+                            </div>
+                          </div>
+                              </form>
+
+                          </div>
+                      </section>
+                  </div>
+				  </div>
+					  
+                  </div>
+          		</div><!-- col-lg-12-->      	
+          	</div><!-- /row -->          	
+		</section>
+<script type="text/javascript">
+
+$(document).ready(function(){	
+$("#frm").validate({
+    rules: {
+    zipcodefrom: {
+      required: true,
+      number: true
+    }
+  }
+});
+});
+</script>
+<script type="text/javascript" src="/js/jquery.validate.js"></script>
+<% include layouts/footer %>

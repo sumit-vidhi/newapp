@@ -1,0 +1,97 @@
+<% include layouts/header %>
+<% include layouts/leftbar %>
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script> -->
+
+
+<section id="main-content">
+	<section class="wrapper">         	
+          	<div class="row mt">
+				
+          		<div class="col-lg-12">
+				      <% if (message.length > 0) { %>
+                 <div class="row" style="margin:10px;"><div class="col-sm-12 alert alert-danger"><%= message %></div></div>
+                <% } %>
+                <%  
+                if (errors && errors.length>0) { 
+                %>
+                <div class="row" style="margin:10px;">
+                <div class="col-sm-6 col-md-offset-3 alert alert-danger"> 
+                <%
+                  for(var i = 0; i < errors.length; i++) {
+                    %>
+                    <%= errors[i].msg %><br />
+                    <%
+                  }
+                %>
+                </div></div>
+                <%
+                }
+              	%>
+                  <div class="form-panel">	
+ <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                             Edit Page
+                          </header>
+						  <form role="form" class="form-horizontal" action="<%= SITE_URL %>admin/update_page" method="post" name="frm" id="frm">
+                          <div class="panel-body">
+                              
+                                  <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Page Title: <span class="error">*</span></label>
+                              <div class="col-sm-5">
+                                  <input type="text" class="form-control required" name="title" value="<%= data.title%>" placeholder="Title">
+                              </div>
+							  
+                          </div>
+
+                            <div class="form-group"> 
+                              <label class="col-sm-2 col-sm-2 control-label">Page Description: <span class="error">*</span></label>
+                              <div class="col-sm-5">
+                                  <textarea name="description" rows="16" cols="76"  placeholder=" Description"><%= data.description%></textarea>
+                              </div>
+                
+                          </div>
+
+                        
+                 <input type="hidden" class="form-control" name="id" value="<%= data.id%>" placeholder="">
+                                                <div class="form-group">
+                                      <div class="col-lg-offset-2 col-lg-10">
+            							
+            								  <input type="submit" class="btn btn-primary" name="submit" value="Update" />&nbsp;
+            								  <input type="button" class="btn btn-theme02" value="Cancel" onclick="history.go(-1)"/>
+                            </div>
+                          </div>
+                           </div>
+                              </form>
+
+                          </div>
+                      </section>
+                  </div>
+				  </div>
+					  
+                  </div>
+          		</div><!-- col-lg-12-->      	
+          	</div><!-- /row -->          	
+		</section>
+<script type="text/javascript">
+
+$(document).ready(function(){	
+$("#frm").validate({
+    rules: {
+    title: {
+      required: true,
+  
+    },
+	 description: {
+     required: true
+    }
+  }
+});
+//$('textarea').froalaEditor()
+});
+</script>
+<script type="text/javascript" src="/js/jquery.validate.js"></script>
+<% include layouts/footer %>
